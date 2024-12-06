@@ -854,7 +854,7 @@ class Distribution(NameVer):
                 if TRACE:
                     print(f"Fetched license from remote: {lic_url}")
 
-            except:
+            except Exception:
                 try:
                     # try licensedb second
                     lic_url = f"{LICENSEDB_API_URL}/{filename}"
@@ -867,7 +867,7 @@ class Distribution(NameVer):
                     if TRACE:
                         print(f"Fetched license from licensedb: {lic_url}")
 
-                except:
+                except Exception:
                     msg = f'No text for license {filename} in expression "{self.license_expression}" from {self}'
                     print(msg)
                     errors.append(msg)
@@ -1302,7 +1302,7 @@ class Wheel(Distribution):
 def is_pure_wheel(filename):
     try:
         return Wheel.from_filename(filename).is_pure()
-    except:
+    except Exception:
         return False
 
 
